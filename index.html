@@ -39,7 +39,6 @@
     justify-content: center;
   }
 
-  /* ── ÉCRAN TITRE ── */
   #screen-title {
     display: flex;
     flex-direction: column;
@@ -55,29 +54,15 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: repeating-linear-gradient(
-      0deg, transparent, transparent 59px,
-      rgba(255,255,255,0.03) 60px
-    ),
-    repeating-linear-gradient(
-      90deg, transparent, transparent 59px,
-      rgba(255,255,255,0.03) 60px
-    );
+    background: repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(255,255,255,0.03) 60px),
+                repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(255,255,255,0.03) 60px);
   }
 
-  .stars {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
+  .stars { position: absolute; inset: 0; pointer-events: none; }
   .star {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
+    position: absolute; background: white; border-radius: 50%;
     animation: twinkle var(--d, 3s) infinite alternate;
   }
-
   @keyframes twinkle {
     from { opacity: 0.2; transform: scale(1); }
     to   { opacity: 0.9; transform: scale(1.3); }
@@ -88,15 +73,10 @@
     font-size: clamp(64px, 12vw, 120px);
     letter-spacing: 0.08em;
     color: var(--gold);
-    text-shadow:
-      0 0 40px rgba(240,192,64,0.5),
-      0 4px 0 #b8860b,
-      0 8px 0 #8b6508;
-    position: relative;
-    z-index: 1;
+    text-shadow: 0 0 40px rgba(240,192,64,0.5), 0 4px 0 #b8860b, 0 8px 0 #8b6508;
+    position: relative; z-index: 1;
     animation: titleFloat 4s ease-in-out infinite;
   }
-
   @keyframes titleFloat {
     0%, 100% { transform: translateY(0); }
     50%       { transform: translateY(-10px); }
@@ -104,350 +84,157 @@
 
   .title-sub {
     font-size: clamp(14px, 2.5vw, 22px);
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
+    letter-spacing: 0.4em; text-transform: uppercase;
     color: rgba(245,240,232,0.6);
-    margin-top: -8px;
-    margin-bottom: 48px;
+    margin-top: -8px; margin-bottom: 48px;
     position: relative; z-index: 1;
   }
 
   .btn-play {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 26px;
-    letter-spacing: 0.2em;
+    font-size: 26px; letter-spacing: 0.2em;
     padding: 18px 64px;
     background: linear-gradient(135deg, var(--gold), #d4a820);
-    color: #1a0e00;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    color: #1a0e00; border: none; border-radius: 4px; cursor: pointer;
     position: relative; z-index: 1;
     box-shadow: 0 4px 24px rgba(240,192,64,0.4), 0 2px 0 #8b6508;
     transition: all 0.15s;
   }
-  .btn-play:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(240,192,64,0.6), 0 4px 0 #8b6508;
-  }
+  .btn-play:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(240,192,64,0.6), 0 4px 0 #8b6508; }
   .btn-play:active { transform: translateY(1px); }
 
   .title-holes-info {
     position: relative; z-index: 1;
-    margin-top: 32px;
-    display: flex; gap: 24px;
+    margin-top: 32px; display: flex; gap: 24px;
     opacity: 0.7; font-size: 14px;
     flex-wrap: wrap; justify-content: center;
   }
+  .title-holes-info span { display: flex; align-items: center; gap: 6px; }
 
-  .title-holes-info span {
-    display: flex; align-items: center; gap: 6px;
-  }
-
-  /* ── JEU ── */
   #screen-game {
-    display: none;
-    flex-direction: column;
+    display: none; flex-direction: column;
     width: 100%; height: 100%;
     background: var(--sky);
   }
 
-  /* HUD */
   #hud {
     height: 60px;
-    background: var(--ui-bg);
-    backdrop-filter: blur(8px);
+    background: var(--ui-bg); backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(255,255,255,0.08);
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-    gap: 24px;
-    flex-shrink: 0;
+    display: flex; align-items: center;
+    padding: 0 20px; gap: 24px; flex-shrink: 0;
   }
-
-  .hud-block {
-    display: flex; flex-direction: column; align-items: center;
-    min-width: 60px;
-  }
-  .hud-label {
-    font-size: 9px; letter-spacing: 0.2em;
-    text-transform: uppercase;
-    opacity: 0.5;
-  }
-  .hud-value {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px;
-    line-height: 1;
-    color: var(--gold);
-  }
+  .hud-block { display: flex; flex-direction: column; align-items: center; min-width: 60px; }
+  .hud-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.5; }
+  .hud-value { font-family: 'Bebas Neue', sans-serif; font-size: 24px; line-height: 1; color: var(--gold); }
   .hud-sep { width: 1px; height: 36px; background: rgba(255,255,255,0.1); }
-
-  #hud-hole-name {
-    flex: 1;
-    text-align: center;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    letter-spacing: 0.15em;
-    color: rgba(255,255,255,0.7);
-  }
-
-  #power-bar-wrap {
-    display: flex; align-items: center; gap: 10px;
-    flex-shrink: 0;
-  }
+  #hud-hole-name { flex: 1; text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 0.15em; color: rgba(255,255,255,0.7); }
+  #power-bar-wrap { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
   #power-bar-wrap span { font-size: 11px; letter-spacing: 0.1em; opacity: 0.6; }
-  #power-bar {
-    width: 100px; height: 8px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  #power-fill {
-    height: 100%; width: 0%;
-    background: linear-gradient(90deg, #4caf50, #f0c040, #e8573a);
-    border-radius: 4px;
-    transition: width 0.05s;
-  }
+  #power-bar { width: 100px; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
+  #power-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #4caf50, #f0c040, #e8573a); border-radius: 4px; transition: width 0.05s; }
 
-  /* CANVAS WRAPPER */
-  #canvas-wrap {
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-    cursor: crosshair;
-  }
+  #canvas-wrap { flex: 1; position: relative; overflow: hidden; cursor: crosshair; }
+  #game-canvas { display: block; width: 100%; height: 100%; }
 
-  #game-canvas {
-    display: block;
-    width: 100%; height: 100%;
-  }
-
-  /* AIM LINE */
-  #aim-overlay {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  /* MESSAGES */
   #message-banner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%) scale(0.8);
-    background: var(--ui-bg);
-    border: 2px solid var(--gold);
-    border-radius: 8px;
-    padding: 24px 48px;
-    text-align: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s;
-    z-index: 10;
+    background: var(--ui-bg); border: 2px solid var(--gold);
+    border-radius: 8px; padding: 24px 48px;
+    text-align: center; opacity: 0; pointer-events: none;
+    transition: all 0.3s; z-index: 10;
   }
-  #message-banner.show {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  #message-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 48px;
-    color: var(--gold);
-    line-height: 1;
-  }
-  #message-sub {
-    font-size: 16px;
-    opacity: 0.7;
-    margin-top: 6px;
-  }
+  #message-banner.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  #message-title { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--gold); line-height: 1; }
+  #message-sub { font-size: 16px; opacity: 0.7; margin-top: 6px; }
 
-  /* SCORECARD OVERLAY */
   #screen-scorecard {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    backdrop-filter: blur(6px);
-    z-index: 100;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
+    z-index: 100; align-items: center; justify-content: center; flex-direction: column;
   }
   #screen-scorecard.show { display: flex; }
-
   .scorecard {
-    background: var(--ui-bg);
-    border: 2px solid rgba(240,192,64,0.4);
-    border-radius: 12px;
-    padding: 40px;
-    max-width: 600px;
-    width: 90%;
+    background: var(--ui-bg); border: 2px solid rgba(240,192,64,0.4);
+    border-radius: 12px; padding: 40px; max-width: 600px; width: 90%;
   }
-  .scorecard h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 48px;
-    color: var(--gold);
-    text-align: center;
-    margin-bottom: 24px;
-    letter-spacing: 0.1em;
-  }
-  .scorecard table {
-    width: 100%; border-collapse: collapse;
-    font-size: 14px;
-  }
-  .scorecard th {
-    background: rgba(255,255,255,0.06);
-    padding: 8px 12px;
-    text-align: center;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    opacity: 0.6;
-  }
-  .scorecard td {
-    padding: 8px 12px;
-    text-align: center;
-    border-top: 1px solid rgba(255,255,255,0.07);
-  }
+  .scorecard h2 { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--gold); text-align: center; margin-bottom: 24px; letter-spacing: 0.1em; }
+  .scorecard table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .scorecard th { background: rgba(255,255,255,0.06); padding: 8px 12px; text-align: center; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.6; }
+  .scorecard td { padding: 8px 12px; text-align: center; border-top: 1px solid rgba(255,255,255,0.07); }
   .score-eagle { color: #4dd; }
   .score-birdie { color: #4d4; }
   .score-par { color: var(--white); }
   .score-bogey { color: #fa4; }
   .score-double { color: var(--accent); }
-  .score-total {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    color: var(--gold);
-  }
+  .score-total { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--gold); }
   .sc-total-row td { border-top: 2px solid rgba(240,192,64,0.4); }
-
-  .scorecard-btns {
-    display: flex; gap: 12px; margin-top: 24px; justify-content: center;
-  }
-  .sc-btn {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    letter-spacing: 0.15em;
-    padding: 12px 40px;
-    border: none; border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
+  .scorecard-btns { display: flex; gap: 12px; margin-top: 24px; justify-content: center; }
+  .sc-btn { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 0.15em; padding: 12px 40px; border: none; border-radius: 4px; cursor: pointer; transition: all 0.15s; }
   .sc-btn-primary { background: var(--gold); color: #1a0e00; }
   .sc-btn-primary:hover { filter: brightness(1.1); }
-  .sc-btn-secondary {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.2);
-    color: var(--white);
-  }
+  .sc-btn-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--white); }
   .sc-btn-secondary:hover { border-color: rgba(255,255,255,0.5); }
 
-  /* INSTRUCTIONS */
   #instructions {
-    position: absolute;
-    bottom: 16px; left: 50%;
+    position: absolute; bottom: 16px; left: 50%;
     transform: translateX(-50%);
-    display: flex; gap: 24px;
-    font-size: 12px;
-    opacity: 0.45;
-    pointer-events: none;
-    letter-spacing: 0.05em;
-    white-space: nowrap;
+    display: flex; gap: 24px; font-size: 12px;
+    opacity: 0.45; pointer-events: none;
+    letter-spacing: 0.05em; white-space: nowrap;
   }
   #instructions span::before { content: '• '; }
 
-  /* WIND INDICATOR */
   #wind-indicator {
-    position: absolute;
-    top: 16px; right: 16px;
-    background: rgba(13,27,42,0.85);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 50%;
-    width: 70px; height: 70px;
+    position: absolute; top: 16px; right: 16px;
+    background: rgba(13,27,42,0.85); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50%; width: 70px; height: 70px;
     display: flex; align-items: center; justify-content: center;
-    flex-direction: column;
-    font-size: 10px;
-    opacity: 0.8;
+    flex-direction: column; font-size: 10px; opacity: 0.8;
   }
   #wind-arrow { font-size: 20px; display: block; transition: transform 0.5s; }
   #wind-speed { font-size: 11px; color: var(--gold); }
   #wind-label { font-size: 9px; opacity: 0.5; letter-spacing: 0.1em; }
 
-  /* HOLE PREVIEW */
   #hole-transition {
-    position: fixed;
-    inset: 0;
-    background: #0d1b2a;
-    z-index: 50;
-    display: flex; align-items: center; justify-content: center;
-    flex-direction: column;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s;
+    position: fixed; inset: 0; background: #0d1b2a; z-index: 50;
+    display: flex; align-items: center; justify-content: center; flex-direction: column;
+    opacity: 0; pointer-events: none; transition: opacity 0.4s;
   }
   #hole-transition.show { opacity: 1; pointer-events: all; }
-  #ht-number {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 120px;
-    color: var(--gold);
-    line-height: 1;
-    opacity: 0.15;
-    position: absolute;
-  }
-  #ht-info {
-    position: relative; z-index: 1;
-    text-align: center;
-  }
-  #ht-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 48px;
-    color: var(--gold);
-  }
+  #ht-number { font-family: 'Bebas Neue', sans-serif; font-size: 120px; color: var(--gold); line-height: 1; opacity: 0.15; position: absolute; }
+  #ht-info { position: relative; z-index: 1; text-align: center; }
+  #ht-name { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--gold); }
   #ht-par { font-size: 18px; opacity: 0.6; margin-top: 4px; }
   #ht-desc { font-size: 14px; opacity: 0.4; margin-top: 8px; font-style: italic; }
 </style>
 </head>
 <body>
-
 <div id="app">
 
-  <!-- TITRE -->
   <div id="screen-title">
     <div class="stars" id="stars-bg"></div>
     <div class="title-logo">Mini Golf Pro</div>
-    <div class="title-sub">9 Trous · Obstacles · Physique Réaliste</div>
+    <div class="title-sub">9 Trous · Aléatoires · Physique Réaliste</div>
     <button class="btn-play" id="btn-start">JOUER</button>
     <div class="title-holes-info">
-      <span>9 trous uniques</span>
+      <span>9 trous générés</span>
       <span>Vent dynamique</span>
       <span>Obstacles variés</span>
       <span>Scorecard complète</span>
     </div>
   </div>
 
-  <!-- JEU -->
   <div id="screen-game">
-    <!-- HUD -->
     <div id="hud">
-      <div class="hud-block">
-        <div class="hud-label">Trou</div>
-        <div class="hud-value" id="hud-hole">1</div>
-      </div>
+      <div class="hud-block"><div class="hud-label">Trou</div><div class="hud-value" id="hud-hole">1</div></div>
       <div class="hud-sep"></div>
-      <div class="hud-block">
-        <div class="hud-label">Par</div>
-        <div class="hud-value" id="hud-par">3</div>
-      </div>
+      <div class="hud-block"><div class="hud-label">Par</div><div class="hud-value" id="hud-par">3</div></div>
       <div class="hud-sep"></div>
-      <div class="hud-block">
-        <div class="hud-label">Coups</div>
-        <div class="hud-value" id="hud-strokes">0</div>
-      </div>
+      <div class="hud-block"><div class="hud-label">Coups</div><div class="hud-value" id="hud-strokes">0</div></div>
       <div class="hud-sep"></div>
-      <div class="hud-block">
-        <div class="hud-label">Score</div>
-        <div class="hud-value" id="hud-total">0</div>
-      </div>
+      <div class="hud-block"><div class="hud-label">Score</div><div class="hud-value" id="hud-total">0</div></div>
       <div class="hud-sep"></div>
       <div id="hud-hole-name">Trou 1</div>
       <div class="hud-sep"></div>
@@ -456,8 +243,6 @@
         <div id="power-bar"><div id="power-fill"></div></div>
       </div>
     </div>
-
-    <!-- CANVAS -->
     <div id="canvas-wrap">
       <canvas id="game-canvas"></canvas>
       <div id="wind-indicator">
@@ -478,30 +263,20 @@
     </div>
   </div>
 
-  <!-- TRANSITION TROU -->
   <div id="hole-transition">
     <div id="ht-number">1</div>
     <div id="ht-info">
       <div id="ht-name">Trou 1</div>
       <div id="ht-par">Par 3</div>
-      <div id="ht-desc">Un parcours d'initiation</div>
+      <div id="ht-desc">Bonne chance !</div>
     </div>
   </div>
 
-  <!-- SCORECARD -->
   <div id="screen-scorecard">
     <div class="scorecard">
       <h2>⛳ Scorecard</h2>
       <table id="scorecard-table">
-        <thead>
-          <tr>
-            <th>Trou</th>
-            <th>Nom</th>
-            <th>Par</th>
-            <th>Coups</th>
-            <th>+/-</th>
-          </tr>
-        </thead>
+        <thead><tr><th>Trou</th><th>Nom</th><th>Par</th><th>Coups</th><th>+/-</th></tr></thead>
         <tbody id="scorecard-body"></tbody>
         <tfoot id="scorecard-foot"></tfoot>
       </table>
@@ -513,1022 +288,642 @@
   </div>
 
 </div>
-
 <script>
 // ══════════════════════════════════════════
-//  MINI GOLF PRO — Engine Complet
+//  MINI GOLF PRO
 // ══════════════════════════════════════════
 
-// ── Stars background ──
+// Stars
 const starsEl = document.getElementById('stars-bg');
 for (let i = 0; i < 120; i++) {
   const s = document.createElement('div');
   s.className = 'star';
-  const size = Math.random() * 2.5 + 0.5;
-  s.style.cssText = `
-    left:${Math.random()*100}%;top:${Math.random()*100}%;
-    width:${size}px;height:${size}px;
-    --d:${(Math.random()*3+2).toFixed(1)}s;
-    animation-delay:${(Math.random()*3).toFixed(1)}s;
-  `;
+  const sz = Math.random()*2.5+0.5;
+  s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${sz}px;height:${sz}px;--d:${(Math.random()*3+2).toFixed(1)}s;animation-delay:${(Math.random()*3).toFixed(1)}s;`;
   starsEl.appendChild(s);
 }
 
-// ── Canvas setup ──
+// Canvas
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
-let W, H, scaleX, scaleY;
+let W = 800, H = 600, scaleX = 1, scaleY = 1;
 
 function resizeCanvas() {
   const wrap = document.getElementById('canvas-wrap');
-  canvas.width = wrap.offsetWidth;
-  canvas.height = wrap.offsetHeight;
-  W = canvas.width; H = canvas.height;
+  W = canvas.width  = wrap.offsetWidth  || 800;
+  H = canvas.height = wrap.offsetHeight || 600;
   scaleX = W / 800;
   scaleY = H / 600;
 }
 
-// ── Physics constants ──
-const FRICTION = 0.985;
-const SPIN_DECAY = 0.92;
-const GRAVITY = 0;
-const BALL_RADIUS = 7;
-const HOLE_RADIUS = 14;
-const WALL_RESTITUTION = 0.62;
-const MIN_SPEED = 0.12;
-const MAX_POWER = 18;
-const WIND_EFFECT = 0.0015;
+// Physics
+const FRICTION = 0.985, SPIN_DECAY = 0.92;
+const BALL_RADIUS = 7, HOLE_RADIUS = 14;
+const WALL_RESTITUTION = 0.62, MIN_SPEED = 0.12;
+const MAX_POWER = 18, WIND_EFFECT = 0.0015;
 
-// ── Game state ──
-let state = {
-  hole: 0,
-  strokes: 0,
-  totalScore: 0,
-  scores: [],
-  phase: 'aim',   // aim | shooting | rolling | done
-  charging: false,
-  chargeStart: 0,
-  aimAngle: 0,
-  power: 0,
-  mouseX: 0, mouseY: 0,
-  mouseDown: false,
-  wind: { angle: 0, speed: 0 },
-};
-
-let ball = { x: 0, y: 0, vx: 0, vy: 0, spin: 0, inWater: false, lastSafeX: 0, lastSafeY: 0 };
+// State
+let state = { hole:0, strokes:0, totalScore:0, scores:[], phase:'aim', wind:{angle:0,speed:0} };
+let ball = { x:0, y:0, vx:0, vy:0, spin:0, inWater:false, lastSafeX:0, lastSafeY:0 };
 let particles = [];
+let windmillAngle = 0, windmillSpeed = 0.025;
+let HOLES = [];
 
-// ── HOLES DEFINITION ──
-// coords are in 800x600 virtual space
-const HOLES = [
-  {
-    name: "La Ligne Droite",
-    par: 2,
-    desc: "Parfait pour s'échauffer",
-    ball: {x:100, y:300},
-    hole: {x:700, y:300},
-    walls: [
-      {x1:60,y1:240,x2:740,y2:240},
-      {x1:60,y1:360,x2:740,y2:360},
-      {x1:60,y1:240,x2:60,y2:360},
-      {x1:740,y1:240,x2:740,y2:360},
-    ],
-    rects: [],
-    sand: [],
-    water: [],
-    color: '#2d6a3f',
-  },
-  {
-    name: "Le Coude",
-    par: 3,
-    desc: "Un virage serré à négocier",
-    ball: {x:100, y:300},
-    hole: {x:680, y:120},
-    walls: [
-      // couloir horizontal
-      {x1:60,y1:240,x2:460,y2:240},
-      {x1:60,y1:360,x2:400,y2:360},
-      {x1:60,y1:240,x2:60,y2:360},
-      // virage
-      {x1:400,y1:360,x2:400,y2:180},
-      {x1:460,y1:240,x2:460,y2:60},
-      // fin
-      {x1:400,y1:180,x2:460,y2:180},
-      {x1:400,y1:60,x2:740,y2:60},
-      {x1:460,y1:60,x2:740,y2:60},
-      {x1:740,y1:60,x2:740,y2:180},
-      {x1:400,y1:180,x2:740,y2:180},
-    ],
-    rects: [],
-    sand: [{x:420,y:70,w:100,h:90}],
-    water: [],
-    color: '#2d6a3f',
-  },
-  {
-    name: "L'Île",
-    par: 3,
-    desc: "Ne ratez pas le green !",
-    ball: {x:100, y:300},
-    hole: {x:680, y:300},
-    walls: [
-      {x1:60,y1:240,x2:740,y2:240},
-      {x1:60,y1:360,x2:740,y2:360},
-      {x1:60,y1:240,x2:60,y2:360},
-      {x1:740,y1:240,x2:740,y2:360},
-    ],
-    rects: [],
-    sand: [],
-    water: [{x:310,y:248,w:200,h:104}],
-    islands: [{x:380,y:270,r:40}],
-    color: '#2d6a3f',
-  },
-  {
-    name: "Le Labyrinthe",
-    par: 4,
-    desc: "Trouvez le passage secret",
-    ball: {x:80, y:300},
-    hole: {x:720, y:300},
-    walls: [
-      // bordure
-      {x1:50,y1:180,x2:750,y2:180},
-      {x1:50,y1:420,x2:750,y2:420},
-      {x1:50,y1:180,x2:50,y2:420},
-      {x1:750,y1:180,x2:750,y2:420},
-      // obstacles internes - colonnes verticales
-      {x1:180,y1:180,x2:180,y2:330},
-      {x1:320,y1:270,x2:320,y2:420},
-      {x1:460,y1:180,x2:460,y2:330},
-      {x1:600,y1:270,x2:600,y2:420},
-    ],
-    rects: [],
-    sand: [{x:380,y:190,w:60,h:60},{x:200,y:350,w:80,h:60}],
-    water: [],
-    color: '#2d6a3f',
-  },
-  {
-    name: "Le Windmill",
-    par: 3,
-    desc: "Timing parfait requis !",
-    ball: {x:100, y:300},
-    hole: {x:700, y:300},
-    walls: [
-      {x1:60,y1:230,x2:740,y2:230},
-      {x1:60,y1:370,x2:740,y2:370},
-      {x1:60,y1:230,x2:60,y2:370},
-      {x1:740,y1:230,x2:740,y2:370},
-    ],
-    rects: [],
-    sand: [],
-    water: [],
-    windmill: {x:400, y:300, r:60},
-    color: '#2d6a3f',
-  },
-  {
-    name: "Le Serpent",
-    par: 4,
-    desc: "Un tracé sinueux",
-    ball: {x:80, y:100},
-    hole: {x:720, y:520},
-    walls: buildSnakeWalls(),
-    rects: [],
-    sand: [{x:200,y:200,w:80,h:50},{x:500,y:330,w:80,h:50}],
-    water: [],
-    color: '#2d6a3f',
-  },
-  {
-    name: "La Forteresse",
-    par: 3,
-    desc: "Contournez les obstacles",
-    ball: {x:100, y:300},
-    hole: {x:700, y:300},
-    walls: [
-      {x1:50,y1:200,x2:750,y2:200},
-      {x1:50,y1:400,x2:750,y2:400},
-      {x1:50,y1:200,x2:50,y2:400},
-      {x1:750,y1:200,x2:750,y2:400},
-      // forteresse centrale
-      {x1:320,y1:220,x2:480,y2:220},
-      {x1:320,y1:220,x2:320,y2:340},
-      {x1:480,y1:220,x2:480,y2:340},
-      {x1:320,y1:340,x2:380,y2:340},
-      {x1:420,y1:340,x2:480,y2:340},
-    ],
-    rects: [],
-    sand: [],
-    water: [{x:55,y:205,w:220,h:190},{x:525,y:205,w:220,h:190}],
-    color: '#2d6a3f',
-  },
-  {
-    name: "Le Rail",
-    par: 3,
-    desc: "Ricochets stratégiques",
-    ball: {x:100, y:500},
-    hole: {x:700, y:120},
-    walls: [
-      {x1:50,y1:80,x2:750,y2:80},
-      {x1:50,y1:540,x2:750,y2:540},
-      {x1:50,y1:80,x2:50,y2:540},
-      {x1:750,y1:80,x2:750,y2:540},
-      // rails / bumpers diagonaux
-      {x1:150,y1:200,x2:350,y2:400},
-      {x1:450,y1:180,x2:650,y2:380},
-    ],
-    rects: [],
-    sand: [],
-    water: [],
-    color: '#2d6a3f',
-  },
-  {
-    name: "Le Final",
-    par: 5,
-    desc: "Le grand défi final !",
-    ball: {x:80, y:300},
-    hole: {x:720, y:300},
-    walls: [
-      {x1:50,y1:150,x2:750,y2:150},
-      {x1:50,y1:450,x2:750,y2:450},
-      {x1:50,y1:150,x2:50,y2:450},
-      {x1:750,y1:150,x2:750,y2:450},
-      // obstacles complexes
-      {x1:180,y1:150,x2:180,y2:290},
-      {x1:180,y1:310,x2:180,y2:450},
-      {x1:320,y1:150,x2:320,y2:250},
-      {x1:320,y1:360,x2:320,y2:450},
-      {x1:460,y1:150,x2:460,y2:270},
-      {x1:460,y1:330,x2:460,y2:450},
-      {x1:600,y1:150,x2:600,y2:280},
-      {x1:600,y1:320,x2:600,y2:450},
-    ],
-    rects: [],
-    sand: [{x:200,y:160,w:100,h:50},{x:350,y:370,w:100,h:70}],
-    water: [{x:220,y:300,w:80,h:80},{x:480,y:230,w:80,h:80}],
-    windmill: {x:390, y:300, r:50},
-    color: '#2d6a3f',
-  },
+// ── RNG ──────────────────────────────────
+function makeRng(seed) {
+  let s = (seed >>> 0) || 1;
+  return () => {
+    s ^= s << 13; s ^= s >> 17; s ^= s << 5;
+    return (s >>> 0) / 0x100000000;
+  };
+}
+function shuffle(arr, r) {
+  for (let i = arr.length-1; i > 0; i--) {
+    const j = Math.floor(r()*(i+1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+
+// ── PROCEDURAL COURSE ─────────────────────
+const HOLE_NAMES = [
+  'La Ligne Droite','Le Coude','Le Serpent','La Forteresse','Le Labyrinthe',
+  'L\'Île','Le Canyon','Le Windmill','Le Grand Défi','Le Corridor',
+  'La Spirale','Le Détroit','La Cascade','Le Désert','Le Bosquet',
+];
+const HOLE_DESCS = [
+  'Un tracé classique','Attention au virage !','Restez dans le couloir',
+  'Contournez les obstacles','Trouvez le passage','Évitez l\'eau !',
+  'Ricochets stratégiques','Timing parfait requis','Le grand défi final',
+  'Précision absolue','Le vent souffle fort','Gardez le cap',
 ];
 
-function buildSnakeWalls() {
-  return [
-    // Segment 1: horizontal haut
-    {x1:50,y1:60,x2:400,y2:60},
-    {x1:50,y1:160,x2:350,y2:160},
-    {x1:50,y1:60,x2:50,y2:160},
-    // virage 1
-    {x1:350,y1:160,x2:350,y2:220},
-    {x1:400,y1:60,x2:400,y2:260},
-    // Segment 2: horizontal milieu
-    {x1:350,y1:220,x2:100,y2:220},
-    {x1:100,y1:220,x2:100,y2:320},
-    {x1:400,y1:260,x2:400,y2:380},
-    // Segment 3
-    {x1:100,y1:320,x2:500,y2:320},
-    {x1:500,y1:260,x2:500,y2:320},
-    {x1:400,y1:380,x2:400,y2:440},
-    {x1:500,y1:380,x2:500,y2:440},
-    // Segment 4: fin
-    {x1:400,y1:440,x2:750,y2:440},
-    {x1:500,y1:380,x2:750,y2:380},
-    {x1:750,y1:380,x2:750,y2:560},
-    {x1:650,y1:440,x2:650,y2:560},
-    {x1:650,y1:560,x2:750,y2:560},
+function generateCourse(seed) {
+  const r = makeRng(seed);
+  const ni = Array.from({length:HOLE_NAMES.length},(_,i)=>i);
+  shuffle(ni, r);
+  return Array.from({length:9}, (_,i) => {
+    const par = i===0 ? 2 : i<3 ? 2+Math.floor(r()*2) : i<6 ? 3+Math.floor(r()*2) : 3+Math.floor(r()*3);
+    const desc = HOLE_DESCS[Math.floor(r()*HOLE_DESCS.length)];
+    return buildHole(i, par, HOLE_NAMES[ni[i]], desc, r);
+  });
+}
+
+function buildHole(idx, par, name, desc, r) {
+  const pool = idx===0 ? ['straight'] :
+               idx< 3 ? ['straight','lshape'] :
+                        ['straight','lshape','wide','bumper'];
+  const type = pool[Math.floor(r()*pool.length)];
+  const layout = type==='lshape' ? genLShape(r) :
+                 type==='wide'   ? genWide(r)   :
+                 type==='bumper' ? genBumper(r)  : genStraight(r);
+  addObstacles(layout, par, idx, r);
+  return { name, par, desc, color:'#2d6a3f', ...layout };
+}
+
+function genStraight(r) {
+  const cy = 160+r()*280, hw = 50+r()*50;
+  return {
+    layoutType:'straight',
+    ball:{x:100,y:cy}, hole:{x:700,y:cy+(r()-0.5)*hw*0.5},
+    walls:[
+      {x1:60,  y1:cy-hw, x2:740, y2:cy-hw},
+      {x1:60,  y1:cy+hw, x2:740, y2:cy+hw},
+      {x1:60,  y1:cy-hw, x2:60,  y2:cy+hw},
+      {x1:740, y1:cy-hw, x2:740, y2:cy+hw},
+    ],
+    sand:[], water:[],
+  };
+}
+
+function genLShape(r) {
+  const goUp = r()>0.5;
+  const hw  = 50+Math.floor(r()*30);
+  const cy1 = goUp ? 270+r()*120 : 160+r()*120;
+  const tx  = 250+r()*240;
+  const rng = 130+r()*110;
+  const cy2 = goUp ? Math.max(60+hw, cy1-rng) : Math.min(540-hw, cy1+rng);
+  const L=60;
+
+  const walls = goUp ? [
+    {x1:tx-hw, y1:cy2-hw, x2:tx+hw, y2:cy2-hw},   // top cap B
+    {x1:tx+hw, y1:cy2-hw, x2:tx+hw, y2:cy1+hw},   // right (A+B)
+    {x1:tx+hw, y1:cy1+hw, x2:L,     y2:cy1+hw},   // bottom A
+    {x1:L,     y1:cy1+hw, x2:L,     y2:cy1-hw},   // left cap
+    {x1:L,     y1:cy1-hw, x2:tx-hw, y2:cy1-hw},   // top A
+    {x1:tx-hw, y1:cy1-hw, x2:tx-hw, y2:cy2-hw},   // left B
+  ] : [
+    {x1:L,     y1:cy1-hw, x2:tx+hw, y2:cy1-hw},   // top A
+    {x1:tx+hw, y1:cy1-hw, x2:tx+hw, y2:cy2+hw},   // right (A+B)
+    {x1:tx+hw, y1:cy2+hw, x2:tx-hw, y2:cy2+hw},   // bottom cap B
+    {x1:tx-hw, y1:cy2+hw, x2:tx-hw, y2:cy1+hw},   // inner left B
+    {x1:tx-hw, y1:cy1+hw, x2:L,     y2:cy1+hw},   // bottom A
+    {x1:L,     y1:cy1+hw, x2:L,     y2:cy1-hw},   // left cap
   ];
+
+  return {
+    layoutType:'lshape',
+    ball:{x:L+40, y:cy1},
+    hole:{x:tx, y:goUp ? cy2+hw*0.55 : cy2-hw*0.55},
+    walls, sand:[], water:[],
+  };
 }
 
-// ── Windmill state ──
-let windmillAngle = 0;
-let windmillSpeed = 0.025;
+function genWide(r) {
+  const x1=50, x2=750;
+  const y1=110+r()*80, y2=490-r()*80;
+  const cy=(y1+y2)/2;
+  const walls=[
+    {x1,y1,x2,y2:y1},{x1,y1:y2,x2,y2},
+    {x1,y1,x2:x1,y2},{x1:x2,y1,x2,y2},
+  ];
+  const n=2+Math.floor(r()*2);
+  for (let i=0;i<n;i++) {
+    const wx=160+(i+0.5)*(560/(n))+r()*40-20;
+    const len=(y2-y1)*0.4+r()*(y2-y1)*0.2;
+    if (i%2===0) walls.push({x1:wx,y1,x2:wx,y2:y1+len});
+    else          walls.push({x1:wx,y1:y2-len,x2:wx,y2});
+  }
+  return {
+    layoutType:'wide',
+    ball:{x:x1+60,y:cy},
+    hole:{x:x2-60,y:cy+(r()-0.5)*(y2-y1)*0.3},
+    walls, sand:[], water:[],
+  };
+}
 
-// ── Particles ──
-function spawnParticles(x, y, color, count=8) {
-  for (let i = 0; i < count; i++) {
-    const angle = Math.random() * Math.PI * 2;
-    const speed = Math.random() * 3 + 1;
-    particles.push({
-      x, y,
-      vx: Math.cos(angle)*speed,
-      vy: Math.sin(angle)*speed,
-      r: Math.random() * 4 + 2,
-      life: 1.0,
-      color,
-    });
+function genBumper(r) {
+  const cy=190+r()*220, hw=65+r()*40;
+  const walls=[
+    {x1:60, y1:cy-hw, x2:740, y2:cy-hw},
+    {x1:60, y1:cy+hw, x2:740, y2:cy+hw},
+    {x1:60, y1:cy-hw, x2:60,  y2:cy+hw},
+    {x1:740,y1:cy-hw, x2:740, y2:cy+hw},
+  ];
+  const n=1+Math.floor(r()*2);
+  for (let i=0;i<n;i++) {
+    const bx=150+(i+1)*(580/(n+1));
+    const bl=55+r()*55;
+    const d=r()>0.5?1:-1;
+    walls.push({x1:bx-bl*0.5,y1:cy+d*bl*0.5,x2:bx+bl*0.5,y2:cy-d*bl*0.5});
+  }
+  return {
+    layoutType:'bumper',
+    ball:{x:100,y:cy},
+    hole:{x:700,y:cy+(r()-0.5)*hw*0.4},
+    walls, sand:[], water:[],
+  };
+}
+
+function addObstacles(layout, par, idx, r) {
+  if (par < 3) return;
+  const {ball:b, hole:h, layoutType} = layout;
+  const mx=(b.x+h.x)/2, my=(b.y+h.y)/2;
+
+  if (par>=3 && r()>0.38 && layoutType!=='lshape') {
+    const sw=55+r()*55, sh=35+r()*35;
+    layout.sand.push({x:mx+(r()-0.5)*120-sw/2, y:my+(r()-0.5)*60-sh/2, w:sw, h:sh});
+  }
+  if (par>=4 && r()>0.4 && layoutType!=='lshape') {
+    const ww=60+r()*55, wh=45+r()*35;
+    layout.water.push({x:mx+(r()-0.5)*90-ww/2, y:my+(r()-0.5)*40-wh/2, w:ww, h:wh});
+  }
+  if (idx>=3 && par>=4 && r()>0.58) {
+    layout.windmill = { x:mx+(r()-0.5)*90, y:my+(r()-0.5)*40, r:45+r()*20 };
   }
 }
 
-function spawnWaterSplash(x, y) {
-  for (let i = 0; i < 12; i++) {
-    const angle = -Math.PI/2 + (Math.random()-0.5)*Math.PI;
-    const speed = Math.random()*4+1;
-    particles.push({
-      x, y,
-      vx: Math.cos(angle)*speed,
-      vy: Math.sin(angle)*speed,
-      r: Math.random()*3+1,
-      life: 1.0,
-      color: '#7acfff',
-    });
-  }
-}
-
-// ── Init hole ──
+// ── Init hole ────────────────────────────
 function initHole(idx) {
   const h = HOLES[idx];
-  ball.x = h.ball.x; ball.y = h.ball.y;
-  ball.vx = 0; ball.vy = 0; ball.spin = 0;
-  ball.inWater = false;
-  ball.lastSafeX = h.ball.x; ball.lastSafeY = h.ball.y;
-  state.strokes = 0;
-  state.phase = 'aim';
-  state.charging = false;
-  // Vent aléatoire
-  state.wind.angle = Math.random() * Math.PI * 2;
-  state.wind.speed = Math.random() * 6;
-  windmillSpeed = 0.02 + Math.random()*0.03;
-  particles = [];
+  ball.x=h.ball.x; ball.y=h.ball.y;
+  ball.vx=0; ball.vy=0; ball.spin=0;
+  ball.inWater=false;
+  ball.lastSafeX=h.ball.x; ball.lastSafeY=h.ball.y;
+  state.strokes=0; state.phase='aim';
+  state.wind.angle=Math.random()*Math.PI*2;
+  state.wind.speed=Math.random()*6;
+  windmillSpeed=0.02+Math.random()*0.03;
+  particles=[];
   updateHUD();
 }
 
 function updateHUD() {
-  const h = HOLES[state.hole];
-  document.getElementById('hud-hole').textContent = state.hole+1;
-  document.getElementById('hud-par').textContent = h.par;
-  document.getElementById('hud-strokes').textContent = state.strokes;
-  const diff = state.totalScore;
-  const sign = diff > 0 ? '+' : '';
-  document.getElementById('hud-total').textContent = sign + diff;
-  document.getElementById('hud-hole-name').textContent = h.name;
-  // vent
-  const windDeg = (state.wind.angle * 180/Math.PI);
-  document.getElementById('wind-arrow').style.transform = `rotate(${windDeg}deg)`;
-  document.getElementById('wind-speed').textContent = state.wind.speed.toFixed(1)+' km/h';
+  const h=HOLES[state.hole];
+  document.getElementById('hud-hole').textContent=state.hole+1;
+  document.getElementById('hud-par').textContent=h.par;
+  document.getElementById('hud-strokes').textContent=state.strokes;
+  const diff=state.totalScore;
+  document.getElementById('hud-total').textContent=(diff>0?'+':'')+diff;
+  document.getElementById('hud-hole-name').textContent=h.name;
+  const deg=state.wind.angle*180/Math.PI;
+  document.getElementById('wind-arrow').style.transform=`rotate(${deg}deg)`;
+  document.getElementById('wind-speed').textContent=state.wind.speed.toFixed(1)+' km/h';
 }
 
-// ── Input ──
-let aimMouseX = 0, aimMouseY = 0;
-let isDragging = false;
+// ── Input ─────────────────────────────────
+let aimX=0, aimY=0, isDragging=false;
 
-canvas.addEventListener('mousedown', e => {
-  if (state.phase !== 'aim') return;
-  isDragging = true;
-  const r = canvas.getBoundingClientRect();
-  aimMouseX = (e.clientX - r.left);
-  aimMouseY = (e.clientY - r.top);
+canvas.addEventListener('mousedown', e=>{
+  if (state.phase!=='aim') return;
+  isDragging=true;
+  const r=canvas.getBoundingClientRect();
+  aimX=e.clientX-r.left; aimY=e.clientY-r.top;
 });
-
-canvas.addEventListener('mousemove', e => {
-  const r = canvas.getBoundingClientRect();
-  aimMouseX = (e.clientX - r.left);
-  aimMouseY = (e.clientY - r.top);
+canvas.addEventListener('mousemove', e=>{
+  const r=canvas.getBoundingClientRect();
+  aimX=e.clientX-r.left; aimY=e.clientY-r.top;
 });
-
-canvas.addEventListener('mouseup', e => {
-  if (!isDragging || state.phase !== 'aim') return;
-  isDragging = false;
-  shoot();
+canvas.addEventListener('mouseup', e=>{
+  if (!isDragging||state.phase!=='aim') return;
+  isDragging=false; shoot();
 });
-
-canvas.addEventListener('touchstart', e => {
+canvas.addEventListener('touchstart', e=>{
   e.preventDefault();
-  if (state.phase !== 'aim') return;
-  isDragging = true;
-  const r = canvas.getBoundingClientRect();
-  aimMouseX = (e.touches[0].clientX - r.left);
-  aimMouseY = (e.touches[0].clientY - r.top);
-}, {passive:false});
-
-canvas.addEventListener('touchmove', e => {
+  if (state.phase!=='aim') return;
+  isDragging=true;
+  const r=canvas.getBoundingClientRect();
+  aimX=e.touches[0].clientX-r.left; aimY=e.touches[0].clientY-r.top;
+},{passive:false});
+canvas.addEventListener('touchmove', e=>{
   e.preventDefault();
-  const r = canvas.getBoundingClientRect();
-  aimMouseX = (e.touches[0].clientX - r.left);
-  aimMouseY = (e.touches[0].clientY - r.top);
-}, {passive:false});
+  const r=canvas.getBoundingClientRect();
+  aimX=e.touches[0].clientX-r.left; aimY=e.touches[0].clientY-r.top;
+},{passive:false});
+canvas.addEventListener('touchend', e=>{
+  if (!isDragging||state.phase!=='aim') return;
+  isDragging=false; shoot();
+},{passive:false});
 
-canvas.addEventListener('touchend', e => {
-  if (!isDragging || state.phase !== 'aim') return;
-  isDragging = false;
-  shoot();
-}, {passive:false});
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'r' || e.key === 'R') {
-    if (state.phase !== 'aim' || state.strokes > 0) resetBall();
-  }
-  if (e.key === 's' || e.key === 'S') toggleScorecard();
+document.addEventListener('keydown', e=>{
+  if ((e.key==='r'||e.key==='R') && state.phase==='aim') resetBall();
+  if (e.key==='s'||e.key==='S') toggleScorecard();
 });
 
 function resetBall() {
-  if (state.phase === 'rolling') return;
-  const h = HOLES[state.hole];
-  ball.x = h.ball.x; ball.y = h.ball.y;
-  ball.vx = 0; ball.vy = 0; ball.spin = 0;
-  ball.inWater = false;
-  state.strokes++;
-  state.phase = 'aim';
-  updateHUD();
+  const h=HOLES[state.hole];
+  ball.x=h.ball.x; ball.y=h.ball.y;
+  ball.vx=0; ball.vy=0; ball.spin=0; ball.inWater=false;
+  state.strokes++; state.phase='aim'; updateHUD();
 }
 
-function getBallCanvasPos() {
-  return {
-    cx: ball.x * scaleX,
-    cy: ball.y * scaleY,
-  };
-}
-
-function getAimAngle() {
-  const {cx, cy} = getBallCanvasPos();
-  return Math.atan2(aimMouseY - cy, aimMouseX - cx);
-}
-
-function getPower() {
-  const {cx, cy} = getBallCanvasPos();
-  const dist = Math.hypot(aimMouseX-cx, aimMouseY-cy);
-  return Math.min(dist / 120, 1); // 0..1
-}
+function getBallCanvas() { return {cx:ball.x*scaleX, cy:ball.y*scaleY}; }
+function getAimAngle() { const {cx,cy}=getBallCanvas(); return Math.atan2(aimY-cy,aimX-cx); }
+function getPower()    { const {cx,cy}=getBallCanvas(); return Math.min(Math.hypot(aimX-cx,aimY-cy)/120,1); }
 
 function shoot() {
-  if (state.phase !== 'aim') return;
-  const angle = getAimAngle();
-  const power = getPower();
-  if (power < 0.02) return;
-
-  const speed = power * MAX_POWER;
-  ball.vx = Math.cos(angle) * speed;
-  ball.vy = Math.sin(angle) * speed;
-  ball.spin = (Math.random()-0.5)*0.3;
-  ball.inWater = false;
-
-  state.strokes++;
-  state.phase = 'rolling';
-  updateHUD();
-  spawnParticles(ball.x, ball.y, '#fff', 5);
+  if (state.phase!=='aim') return;
+  const angle=getAimAngle(), power=getPower();
+  if (power<0.02) return;
+  ball.vx=Math.cos(angle)*power*MAX_POWER;
+  ball.vy=Math.sin(angle)*power*MAX_POWER;
+  ball.spin=(Math.random()-0.5)*0.3;
+  ball.inWater=false;
+  state.strokes++; state.phase='rolling'; updateHUD();
+  spawnParticles(ball.x*scaleX, ball.y*scaleY,'#fff',5);
 }
 
-// ── Collision helpers ──
-function closestPointOnSegment(px, py, ax, ay, bx, by) {
-  const dx = bx-ax, dy = by-ay;
-  const len2 = dx*dx+dy*dy;
-  if (len2 === 0) return {x:ax,y:ay};
-  let t = ((px-ax)*dx+(py-ay)*dy)/len2;
-  t = Math.max(0, Math.min(1, t));
-  return {x: ax+t*dx, y: ay+t*dy};
+// ── Collision ─────────────────────────────
+function closestPtOnSeg(px,py,ax,ay,bx,by) {
+  const dx=bx-ax,dy=by-ay, len2=dx*dx+dy*dy;
+  if (len2===0) return {x:ax,y:ay};
+  const t=Math.max(0,Math.min(1,((px-ax)*dx+(py-ay)*dy)/len2));
+  return {x:ax+t*dx,y:ay+t*dy};
 }
-
 function collideBallWall(wall) {
-  const {x1,y1,x2,y2} = wall;
-  const cp = closestPointOnSegment(ball.x, ball.y, x1,y1,x2,y2);
-  const dx = ball.x - cp.x;
-  const dy = ball.y - cp.y;
-  const dist = Math.hypot(dx, dy);
-  if (dist < BALL_RADIUS) {
-    const nx = dx/dist, ny = dy/dist;
-    ball.x = cp.x + nx * BALL_RADIUS;
-    ball.y = cp.y + ny * BALL_RADIUS;
-    const dot = ball.vx*nx + ball.vy*ny;
-    ball.vx = (ball.vx - 2*dot*nx) * WALL_RESTITUTION;
-    ball.vy = (ball.vy - 2*dot*ny) * WALL_RESTITUTION;
-    ball.spin += dot * 0.05;
-    return true;
+  const cp=closestPtOnSeg(ball.x,ball.y,wall.x1,wall.y1,wall.x2,wall.y2);
+  const dx=ball.x-cp.x, dy=ball.y-cp.y, dist=Math.hypot(dx,dy);
+  if (dist<BALL_RADIUS && dist>0) {
+    const nx=dx/dist, ny=dy/dist;
+    ball.x=cp.x+nx*BALL_RADIUS; ball.y=cp.y+ny*BALL_RADIUS;
+    const dot=ball.vx*nx+ball.vy*ny;
+    ball.vx=(ball.vx-2*dot*nx)*WALL_RESTITUTION;
+    ball.vy=(ball.vy-2*dot*ny)*WALL_RESTITUTION;
+    ball.spin+=dot*0.05;
   }
-  return false;
 }
+function inRect(x,y,r)        { return x>=r.x&&x<=r.x+r.w&&y>=r.y&&y<=r.y+r.h; }
+function inCircle(x,y,cx,cy,r){ return Math.hypot(x-cx,y-cy)<r; }
 
-function isInRect(x, y, r) {
-  return x >= r.x && x <= r.x+r.w && y >= r.y && y <= r.y+r.h;
-}
+// ── Physics ───────────────────────────────
+function updatePhysics() {
+  if (state.phase!=='rolling') return;
+  const h=HOLES[state.hole];
 
-function isInCircle(x, y, cx, cy, r) {
-  return Math.hypot(x-cx, y-cy) < r;
-}
+  ball.vx+=Math.cos(state.wind.angle)*state.wind.speed*WIND_EFFECT;
+  ball.vy+=Math.sin(state.wind.angle)*state.wind.speed*WIND_EFFECT;
+  ball.x+=ball.vx; ball.y+=ball.vy;
+  ball.spin*=SPIN_DECAY;
 
-// ── Physics update ──
-function updatePhysics(dt) {
-  if (state.phase !== 'rolling') return;
-  const h = HOLES[state.hole];
-
-  // Wind
-  ball.vx += Math.cos(state.wind.angle) * state.wind.speed * WIND_EFFECT;
-  ball.vy += Math.sin(state.wind.angle) * state.wind.speed * WIND_EFFECT;
-
-  // Move
-  ball.x += ball.vx;
-  ball.y += ball.vy;
-  ball.spin *= SPIN_DECAY;
-
-  // Friction (terrain)
-  let frictionMult = 1;
-  // Sable → plus lent
-  if (h.sand) {
-    for (const s of h.sand) {
-      if (isInRect(ball.x, ball.y, s)) { frictionMult = 0.94; break; }
-    }
-  }
-  ball.vx *= FRICTION * frictionMult;
-  ball.vy *= FRICTION * frictionMult;
+  let fric=1;
+  for (const s of h.sand) { if (inRect(ball.x,ball.y,s)){fric=0.94;break;} }
+  ball.vx*=FRICTION*fric; ball.vy*=FRICTION*fric;
 
   // Water
-  if (h.water) {
-    for (const w of h.water) {
-      // skip if there's an island at ball pos
-      let onIsland = false;
-      if (h.islands) {
-        for (const isl of h.islands) {
-          if (isInCircle(ball.x, ball.y, isl.x, isl.y, isl.r)) { onIsland = true; break; }
-        }
-      }
-      if (!onIsland && isInRect(ball.x, ball.y, w)) {
-        spawnWaterSplash(ball.x*scaleX, ball.y*scaleY);
-        // Retour à dernière position safe
-        ball.x = ball.lastSafeX;
-        ball.y = ball.lastSafeY;
-        ball.vx = 0; ball.vy = 0;
-        state.strokes++; // pénalité
-        state.phase = 'aim';
-        updateHUD();
-        showMessage('SPLASH !', 'Pénalité +1 coup', 1500);
-        return;
-      }
-    }
-  }
-
-  // Sauvegarde safe position (hors eau, hors out)
-  if (!ball.inWater) {
-    ball.lastSafeX = ball.x;
-    ball.lastSafeY = ball.y;
-  }
-
-  // Windmill collision
-  if (h.windmill) {
-    windmillAngle += windmillSpeed;
-    const wm = h.windmill;
-    // 4 pales
-    for (let i = 0; i < 4; i++) {
-      const a = windmillAngle + i * Math.PI/2;
-      const ax = wm.x + Math.cos(a)*wm.r;
-      const ay = wm.y + Math.sin(a)*wm.r;
-      const bx = wm.x + Math.cos(a+Math.PI)*wm.r;
-      const by = wm.y + Math.sin(a+Math.PI)*wm.r;
-      collideBallWall({x1:ax,y1:ay,x2:bx,y2:by});
-    }
-  }
-
-  // Wall collisions
-  for (const w of h.walls) {
-    collideBallWall(w);
-  }
-
-  // Hole check
-  const hole = h.hole;
-  const distToHole = Math.hypot(ball.x-hole.x, ball.y-hole.y);
-  const speed = Math.hypot(ball.vx, ball.vy);
-
-  if (distToHole < HOLE_RADIUS - 2) {
-    // Succion du trou
-    if (distToHole < HOLE_RADIUS*0.7 && speed < 6) {
-      const pullX = (hole.x-ball.x)*0.15;
-      const pullY = (hole.y-ball.y)*0.15;
-      ball.vx += pullX; ball.vy += pullY;
-    }
-    if (distToHole < 5) {
-      holeIn();
+  for (const w of h.water) {
+    let onIsl=false;
+    if (h.islands) for (const il of h.islands) if (inCircle(ball.x,ball.y,il.x,il.y,il.r)){onIsl=true;break;}
+    if (!onIsl && inRect(ball.x,ball.y,w)) {
+      spawnWaterSplash(ball.x*scaleX, ball.y*scaleY);
+      ball.x=ball.lastSafeX; ball.y=ball.lastSafeY;
+      ball.vx=0; ball.vy=0;
+      state.strokes++; state.phase='aim'; updateHUD();
+      showMessage('SPLASH !','Pénalité +1 coup',1500);
       return;
     }
   }
 
-  // Stop check
-  if (speed < MIN_SPEED && Math.abs(ball.spin) < 0.01) {
-    ball.vx = 0; ball.vy = 0; ball.spin = 0;
-    state.phase = 'aim';
+  if (!ball.inWater) { ball.lastSafeX=ball.x; ball.lastSafeY=ball.y; }
+
+  // Windmill
+  if (h.windmill) {
+    const wm=h.windmill;
+    for (let i=0;i<4;i++) {
+      const a=windmillAngle+i*Math.PI/2;
+      collideBallWall({x1:wm.x+Math.cos(a)*wm.r,y1:wm.y+Math.sin(a)*wm.r,
+                       x2:wm.x+Math.cos(a+Math.PI)*wm.r,y2:wm.y+Math.sin(a+Math.PI)*wm.r});
+    }
+  }
+
+  for (const w of h.walls) collideBallWall(w);
+
+  // Hole suck
+  const hl=h.hole;
+  const distH=Math.hypot(ball.x-hl.x,ball.y-hl.y);
+  const spd=Math.hypot(ball.vx,ball.vy);
+  if (distH<HOLE_RADIUS*0.7&&spd<6) {
+    ball.vx+=(hl.x-ball.x)*0.15; ball.vy+=(hl.y-ball.y)*0.15;
+  }
+  if (distH<5) { holeIn(); return; }
+
+  if (spd<MIN_SPEED&&Math.abs(ball.spin)<0.01) {
+    ball.vx=0; ball.vy=0; ball.spin=0; state.phase='aim';
   }
 }
 
 function holeIn() {
-  ball.vx = 0; ball.vy = 0;
-  state.phase = 'done';
-  const h = HOLES[state.hole];
-  const diff = state.strokes - h.par;
-  const totalBefore = state.totalScore;
-  state.totalScore += diff;
-  state.scores.push({ hole: state.hole, strokes: state.strokes, par: h.par });
-
-  spawnParticles(ball.x*scaleX, ball.y*scaleY, '#f0c040', 20);
-  spawnParticles(ball.x*scaleX, ball.y*scaleY, '#ffffff', 10);
-
-  let msg, sub;
-  if (state.strokes === 1) { msg='HOLE IN ONE!'; sub='Incroyable ! Coup parfait !' ; }
-  else if (diff <= -2)     { msg='EAGLE!';       sub='−2 ou mieux — fantastique !' ; }
-  else if (diff === -1)    { msg='BIRDIE!';       sub='−1 par rapport au par 🐦'   ; }
-  else if (diff === 0)     { msg='PAR!';          sub='Dans le par — bien joué !'  ; }
-  else if (diff === 1)     { msg='BOGEY';         sub='+1 coup — dommage...'       ; }
-  else if (diff === 2)     { msg='DOUBLE BOGEY';  sub='+2 coups'                   ; }
-  else                     { msg='+'+diff+' COUPS'; sub='Pas de chance...'         ; }
-
-  showMessage(msg, sub, 2200);
-
-  setTimeout(() => {
-    if (state.hole < HOLES.length - 1) {
-      nextHole();
-    } else {
-      endGame();
-    }
-  }, 2400);
+  ball.vx=0; ball.vy=0; state.phase='done';
+  const h=HOLES[state.hole];
+  const diff=state.strokes-h.par;
+  state.totalScore+=diff;
+  state.scores.push({hole:state.hole,strokes:state.strokes,par:h.par});
+  spawnParticles(ball.x*scaleX,ball.y*scaleY,'#f0c040',20);
+  spawnParticles(ball.x*scaleX,ball.y*scaleY,'#fff',10);
+  let msg,sub;
+  if (state.strokes===1)  {msg='HOLE IN ONE!';sub='Incroyable !';}
+  else if (diff<=-2)      {msg='EAGLE!';      sub='Fantastique !';}
+  else if (diff===-1)     {msg='BIRDIE!';     sub='-1 par rapport au par';}
+  else if (diff===0)      {msg='PAR!';        sub='Bien joué !';}
+  else if (diff===1)      {msg='BOGEY';       sub='+1 coup';}
+  else if (diff===2)      {msg='DOUBLE BOGEY';sub='+2 coups';}
+  else                    {msg='+'+diff+' COUPS';sub='Pas de chance...';}
+  showMessage(msg,sub,2200);
+  setTimeout(()=>{ state.hole<HOLES.length-1 ? nextHole() : endGame(); },2400);
 }
 
 function nextHole() {
   state.hole++;
-  showHoleTransition(() => {
-    initHole(state.hole);
-  });
+  showHoleTransition(()=>initHole(state.hole));
 }
+function endGame() { showHoleTransition(null,true); }
 
-function endGame() {
-  showHoleTransition(null, true);
-}
-
-function showHoleTransition(cb, final=false) {
-  const ht = document.getElementById('hole-transition');
-  const h = HOLES[Math.min(state.hole, HOLES.length-1)];
-  document.getElementById('ht-number').textContent = state.hole+1;
-  document.getElementById('ht-name').textContent = final ? '⛳ Fin de Partie !' : h.name;
-  document.getElementById('ht-par').textContent = final ? 'Score final' : `Par ${h.par}`;
-  document.getElementById('ht-desc').textContent = final ? 'Consultez votre scorecard' : h.desc;
+function showHoleTransition(cb,final=false) {
+  const ht=document.getElementById('hole-transition');
+  const h=HOLES[Math.min(state.hole,HOLES.length-1)];
+  document.getElementById('ht-number').textContent=state.hole+1;
+  document.getElementById('ht-name').textContent=final?'⛳ Fin de Partie !':h.name;
+  document.getElementById('ht-par').textContent=final?'Score final':`Par ${h.par}`;
+  document.getElementById('ht-desc').textContent=final?'Consultez votre scorecard':h.desc;
   ht.classList.add('show');
-  setTimeout(() => {
+  setTimeout(()=>{
     ht.classList.remove('show');
-    if (cb) setTimeout(cb, 400);
-    else setTimeout(() => showScorecard(), 400);
-  }, final ? 2000 : 1800);
+    if (cb) setTimeout(cb,400);
+    else    setTimeout(()=>showScorecard(),400);
+  }, final?2000:1800);
 }
 
-// ── Message Banner ──
-let msgTimeout = null;
-function showMessage(title, sub, duration=2000) {
-  const el = document.getElementById('message-banner');
-  document.getElementById('message-title').textContent = title;
-  document.getElementById('message-sub').textContent = sub;
+// ── Messages ──────────────────────────────
+let msgTO=null;
+function showMessage(title,sub,dur=2000) {
+  const el=document.getElementById('message-banner');
+  document.getElementById('message-title').textContent=title;
+  document.getElementById('message-sub').textContent=sub;
   el.classList.add('show');
-  if (msgTimeout) clearTimeout(msgTimeout);
-  msgTimeout = setTimeout(() => el.classList.remove('show'), duration);
+  if (msgTO) clearTimeout(msgTO);
+  msgTO=setTimeout(()=>el.classList.remove('show'),dur);
 }
 
-// ── Scorecard ──
+// ── Scorecard ─────────────────────────────
 function toggleScorecard() {
-  const sc = document.getElementById('screen-scorecard');
-  if (sc.classList.contains('show')) sc.classList.remove('show');
-  else { buildScorecard(); sc.classList.add('show'); }
+  const sc=document.getElementById('screen-scorecard');
+  sc.classList.contains('show') ? sc.classList.remove('show') : (buildScorecard(),sc.classList.add('show'));
 }
-
-function showScorecard() {
-  buildScorecard();
-  document.getElementById('screen-scorecard').classList.add('show');
-}
-
+function showScorecard() { buildScorecard(); document.getElementById('screen-scorecard').classList.add('show'); }
 function buildScorecard() {
-  const tbody = document.getElementById('scorecard-body');
-  tbody.innerHTML = '';
-  state.scores.forEach((s, i) => {
-    const h = HOLES[s.hole];
-    const diff = s.strokes - s.par;
-    let cls = 'score-par';
-    if (diff <= -2) cls='score-eagle';
-    else if (diff===-1) cls='score-birdie';
-    else if (diff===1) cls='score-bogey';
-    else if (diff>=2) cls='score-double';
-    const sign = diff>0?'+':'';
-    tbody.innerHTML += `
-      <tr>
-        <td>${s.hole+1}</td>
-        <td style="text-align:left">${h.name}</td>
-        <td>${s.par}</td>
-        <td>${s.strokes}</td>
-        <td class="${cls}">${sign}${diff||'E'}</td>
-      </tr>`;
+  const tbody=document.getElementById('scorecard-body');
+  tbody.innerHTML='';
+  state.scores.forEach(s=>{
+    const h=HOLES[s.hole], diff=s.strokes-s.par;
+    const cls=diff<=-2?'score-eagle':diff===-1?'score-birdie':diff===0?'score-par':diff===1?'score-bogey':'score-double';
+    tbody.innerHTML+=`<tr><td>${s.hole+1}</td><td style="text-align:left">${h.name}</td><td>${s.par}</td><td>${s.strokes}</td><td class="${cls}">${diff>0?'+':''}${diff||'E'}</td></tr>`;
   });
-  // Trous non joués
-  for (let i = state.scores.length; i < HOLES.length; i++) {
-    const h = HOLES[i];
-    tbody.innerHTML += `<tr><td>${i+1}</td><td style="text-align:left;opacity:.4">${h.name}</td><td>${h.par}</td><td>—</td><td>—</td></tr>`;
+  for (let i=state.scores.length;i<HOLES.length;i++) {
+    const h=HOLES[i];
+    tbody.innerHTML+=`<tr><td>${i+1}</td><td style="text-align:left;opacity:.4">${h.name}</td><td>${h.par}</td><td>—</td><td>—</td></tr>`;
   }
-  // Total
-  const tfoot = document.getElementById('scorecard-foot');
-  const totalPar = HOLES.reduce((a,h)=>a+h.par,0);
-  const totalStrokes = state.scores.reduce((a,s)=>a+s.strokes,0);
-  const totalDiff = state.totalScore;
-  const sign = totalDiff>0?'+':'';
-  tfoot.innerHTML = `<tr class="sc-total-row">
-    <td colspan="2" style="text-align:left;font-weight:600">TOTAL</td>
-    <td>${totalPar}</td>
-    <td class="score-total">${totalStrokes||'—'}</td>
-    <td class="score-total">${totalStrokes?sign+totalDiff:'—'}</td>
-  </tr>`;
+  const tfoot=document.getElementById('scorecard-foot');
+  const tp=HOLES.reduce((a,h)=>a+h.par,0);
+  const ts=state.scores.reduce((a,s)=>a+s.strokes,0);
+  const td=state.totalScore;
+  tfoot.innerHTML=`<tr class="sc-total-row"><td colspan="2" style="text-align:left;font-weight:600">TOTAL</td><td>${tp}</td><td class="score-total">${ts||'—'}</td><td class="score-total">${ts?(td>0?'+':'')+td:'—'}</td></tr>`;
 }
+document.getElementById('sc-close').addEventListener('click',()=>document.getElementById('screen-scorecard').classList.remove('show'));
+document.getElementById('sc-restart').addEventListener('click',startGame);
 
-document.getElementById('sc-close').addEventListener('click', () => {
-  document.getElementById('screen-scorecard').classList.remove('show');
-});
-document.getElementById('sc-restart').addEventListener('click', startGame);
-
-// ── DRAWING ──
-function drawGrass(h) {
-  ctx.fillStyle = '#2d6a3f';
-  ctx.fillRect(0, 0, W, H);
-  // texture légère
-  ctx.fillStyle = 'rgba(255,255,255,0.02)';
-  for (let y=0; y<H; y+=20) {
-    for (let x=0; x<W; x+=20) {
-      if ((x+y)%40===0) ctx.fillRect(x*scaleX,y*scaleY,10*scaleX,10*scaleY);
-    }
+// ── Particles ─────────────────────────────
+function spawnParticles(x,y,color,n=8) {
+  for (let i=0;i<n;i++) {
+    const a=Math.random()*Math.PI*2, sp=Math.random()*3+1;
+    particles.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,r:Math.random()*4+2,life:1,color});
+  }
+}
+function spawnWaterSplash(x,y) {
+  for (let i=0;i<12;i++) {
+    const a=-Math.PI/2+(Math.random()-0.5)*Math.PI, sp=Math.random()*4+1;
+    particles.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,r:Math.random()*3+1,life:1,color:'#7acfff'});
   }
 }
 
-function drawHolePoly(h) {
-  ctx.fillStyle = '#3a8c52';
-  ctx.beginPath();
-  ctx.fillRect(0, 0, W, H);
+// ── Drawing ───────────────────────────────
+function drawGrass() {
+  ctx.fillStyle='#2d6a3f';
+  ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='rgba(255,255,255,0.018)';
+  const step=Math.round(20*scaleX);
+  for (let y=0;y<H;y+=step) for (let x=0;x<W;x+=step)
+    if (((x/step|0)+(y/step|0))%2===0) ctx.fillRect(x,y,step,step);
 }
 
 function drawWalls(walls) {
-  ctx.lineCap = 'round';
-  ctx.lineJoin = 'round';
+  ctx.lineCap='round'; ctx.lineJoin='round';
   for (const w of walls) {
-    ctx.shadowColor = 'rgba(0,0,0,0.5)';
-    ctx.shadowBlur = 6 * scaleX;
-    ctx.strokeStyle = '#1a3d24';
-    ctx.lineWidth = 14 * scaleX;
-    ctx.beginPath();
-    ctx.moveTo(w.x1*scaleX, w.y1*scaleY);
-    ctx.lineTo(w.x2*scaleX, w.y2*scaleY);
-    ctx.stroke();
-    // Bord éclairé
-    ctx.shadowBlur = 0;
-    ctx.strokeStyle = '#5db87a';
-    ctx.lineWidth = 2 * scaleX;
-    ctx.beginPath();
-    ctx.moveTo(w.x1*scaleX, w.y1*scaleY);
-    ctx.lineTo(w.x2*scaleX, w.y2*scaleY);
-    ctx.stroke();
+    ctx.shadowColor='rgba(0,0,0,0.5)'; ctx.shadowBlur=6*scaleX;
+    ctx.strokeStyle='#1a3d24'; ctx.lineWidth=14*scaleX;
+    ctx.beginPath(); ctx.moveTo(w.x1*scaleX,w.y1*scaleY); ctx.lineTo(w.x2*scaleX,w.y2*scaleY); ctx.stroke();
+    ctx.shadowBlur=0;
+    ctx.strokeStyle='#5db87a'; ctx.lineWidth=2*scaleX;
+    ctx.beginPath(); ctx.moveTo(w.x1*scaleX,w.y1*scaleY); ctx.lineTo(w.x2*scaleX,w.y2*scaleY); ctx.stroke();
   }
-  ctx.shadowBlur = 0;
+  ctx.shadowBlur=0;
 }
 
 function drawSand(sands) {
   for (const s of sands) {
-    ctx.fillStyle = '#e8d5a0';
-    ctx.fillRect(s.x*scaleX, s.y*scaleY, s.w*scaleX, s.h*scaleY);
-    // texture
-    ctx.fillStyle = 'rgba(200,160,80,0.3)';
-    for (let i=0;i<20;i++) {
-      const sx = (s.x + Math.random()*s.w)*scaleX;
-      const sy = (s.y + Math.random()*s.h)*scaleY;
-      ctx.fillRect(sx, sy, 2*scaleX, 1*scaleY);
-    }
-    // Bordure
-    ctx.strokeStyle = '#c4aa72';
-    ctx.lineWidth = 1.5*scaleX;
-    ctx.strokeRect(s.x*scaleX, s.y*scaleY, s.w*scaleX, s.h*scaleY);
+    ctx.fillStyle='#e8d5a0';
+    ctx.fillRect(s.x*scaleX,s.y*scaleY,s.w*scaleX,s.h*scaleY);
+    ctx.strokeStyle='#c4aa72'; ctx.lineWidth=1.5*scaleX;
+    ctx.strokeRect(s.x*scaleX,s.y*scaleY,s.w*scaleX,s.h*scaleY);
   }
 }
 
-function drawWater(waters, islands) {
-  const t = Date.now()*0.001;
+function drawWater(waters,islands) {
+  const t=Date.now()*0.001;
   for (const w of waters) {
-    const grd = ctx.createLinearGradient(w.x*scaleX, w.y*scaleY, (w.x+w.w)*scaleX, (w.y+w.h)*scaleY);
-    grd.addColorStop(0, '#1a6b9e');
-    grd.addColorStop(0.5+Math.sin(t)*0.1, '#2185c5');
-    grd.addColorStop(1, '#1a6b9e');
-    ctx.fillStyle = grd;
-    ctx.fillRect(w.x*scaleX, w.y*scaleY, w.w*scaleX, w.h*scaleY);
-    // reflets
-    ctx.strokeStyle = 'rgba(255,255,255,0.15)';
-    ctx.lineWidth = 1.5*scaleX;
+    const g=ctx.createLinearGradient(w.x*scaleX,w.y*scaleY,(w.x+w.w)*scaleX,(w.y+w.h)*scaleY);
+    g.addColorStop(0,'#1a6b9e'); g.addColorStop(0.5+Math.sin(t)*0.1,'#2185c5'); g.addColorStop(1,'#1a6b9e');
+    ctx.fillStyle=g; ctx.fillRect(w.x*scaleX,w.y*scaleY,w.w*scaleX,w.h*scaleY);
+    ctx.strokeStyle='rgba(255,255,255,0.15)'; ctx.lineWidth=1.5*scaleX;
     for (let i=0;i<3;i++) {
       ctx.beginPath();
-      const ry = (w.y + 10 + i*20 + Math.sin(t+i)*5) * scaleY;
-      ctx.moveTo((w.x+5)*scaleX, ry);
-      ctx.lineTo((w.x+w.w*0.5)*scaleX, ry);
-      ctx.stroke();
+      const ry=(w.y+10+i*20+Math.sin(t+i)*5)*scaleY;
+      ctx.moveTo((w.x+5)*scaleX,ry); ctx.lineTo((w.x+w.w*0.5)*scaleX,ry); ctx.stroke();
     }
-    // Bordure
-    ctx.strokeStyle = '#1560a0';
-    ctx.lineWidth = 2*scaleX;
-    ctx.strokeRect(w.x*scaleX, w.y*scaleY, w.w*scaleX, w.h*scaleY);
+    ctx.strokeStyle='#1560a0'; ctx.lineWidth=2*scaleX;
+    ctx.strokeRect(w.x*scaleX,w.y*scaleY,w.w*scaleX,w.h*scaleY);
   }
-  // Îles
-  if (islands) {
-    for (const isl of islands) {
-      ctx.beginPath();
-      ctx.arc(isl.x*scaleX, isl.y*scaleY, isl.r*scaleX, 0, Math.PI*2);
-      ctx.fillStyle = '#3a8c52';
-      ctx.fill();
-      ctx.strokeStyle = '#5db87a';
-      ctx.lineWidth = 2*scaleX;
-      ctx.stroke();
-    }
+  if (islands) for (const il of islands) {
+    ctx.beginPath(); ctx.arc(il.x*scaleX,il.y*scaleY,il.r*scaleX,0,Math.PI*2);
+    ctx.fillStyle='#3a8c52'; ctx.fill();
+    ctx.strokeStyle='#5db87a'; ctx.lineWidth=2*scaleX; ctx.stroke();
   }
 }
 
 function drawWindmill(wm) {
-  ctx.save();
-  ctx.translate(wm.x*scaleX, wm.y*scaleY);
-  // Base
-  ctx.fillStyle = '#8B4513';
-  ctx.fillRect(-4*scaleX, -wm.r*scaleY*0.5, 8*scaleX, wm.r*scaleY);
-  // Pales
+  ctx.save(); ctx.translate(wm.x*scaleX,wm.y*scaleY);
+  ctx.fillStyle='#8B4513';
+  ctx.fillRect(-4*scaleX,-wm.r*scaleY*0.5,8*scaleX,wm.r*scaleY);
   for (let i=0;i<4;i++) {
-    const a = windmillAngle + i*Math.PI/2;
-    ctx.save();
-    ctx.rotate(a);
-    ctx.fillStyle = '#d4a820';
-    ctx.shadowColor = 'rgba(0,0,0,0.4)';
-    ctx.shadowBlur = 4*scaleX;
-    ctx.fillRect(-4*scaleX, -wm.r*scaleY, 8*scaleX, wm.r*scaleY);
+    const a=windmillAngle+i*Math.PI/2;
+    ctx.save(); ctx.rotate(a);
+    ctx.fillStyle='#d4a820'; ctx.shadowColor='rgba(0,0,0,0.4)'; ctx.shadowBlur=4*scaleX;
+    ctx.fillRect(-4*scaleX,-wm.r*scaleY,8*scaleX,wm.r*scaleY);
     ctx.restore();
   }
   ctx.shadowBlur=0;
-  // Centre
-  ctx.beginPath();
-  ctx.arc(0,0,8*scaleX,0,Math.PI*2);
-  ctx.fillStyle='#c0392b';
-  ctx.fill();
+  ctx.beginPath(); ctx.arc(0,0,8*scaleX,0,Math.PI*2);
+  ctx.fillStyle='#c0392b'; ctx.fill();
   ctx.restore();
 }
 
 function drawHoleTarget(h) {
-  // Ombre du trou
-  ctx.beginPath();
-  ctx.arc(h.hole.x*scaleX, h.hole.y*scaleY, HOLE_RADIUS*scaleX*1.2, 0, Math.PI*2);
-  const grd = ctx.createRadialGradient(
-    h.hole.x*scaleX, h.hole.y*scaleY, 0,
-    h.hole.x*scaleX, h.hole.y*scaleY, HOLE_RADIUS*scaleX*1.2
-  );
-  grd.addColorStop(0, 'rgba(0,0,0,0.7)');
-  grd.addColorStop(1, 'rgba(0,0,0,0)');
-  ctx.fillStyle = grd;
-  ctx.fill();
-
-  // Trou
-  ctx.beginPath();
-  ctx.arc(h.hole.x*scaleX, h.hole.y*scaleY, HOLE_RADIUS*scaleX, 0, Math.PI*2);
-  ctx.fillStyle = '#111';
-  ctx.fill();
-
-  // Drapeau
-  const fx = h.hole.x*scaleX;
-  const fy = h.hole.y*scaleY;
-  ctx.strokeStyle = '#aaa';
-  ctx.lineWidth = 1.5*scaleX;
-  ctx.beginPath();
-  ctx.moveTo(fx, fy - 4*scaleY);
-  ctx.lineTo(fx, fy - 28*scaleY);
-  ctx.stroke();
-  // triangle drapeau
-  ctx.beginPath();
-  ctx.moveTo(fx, fy - 28*scaleY);
-  ctx.lineTo(fx + 14*scaleX, fy - 22*scaleY);
-  ctx.lineTo(fx, fy - 16*scaleY);
-  ctx.fillStyle = '#e8573a';
-  ctx.fill();
+  const hx=h.hole.x*scaleX, hy=h.hole.y*scaleY;
+  ctx.beginPath(); ctx.arc(hx,hy,HOLE_RADIUS*scaleX*1.2,0,Math.PI*2);
+  const g=ctx.createRadialGradient(hx,hy,0,hx,hy,HOLE_RADIUS*scaleX*1.2);
+  g.addColorStop(0,'rgba(0,0,0,0.7)'); g.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=g; ctx.fill();
+  ctx.beginPath(); ctx.arc(hx,hy,HOLE_RADIUS*scaleX,0,Math.PI*2);
+  ctx.fillStyle='#111'; ctx.fill();
+  ctx.strokeStyle='#aaa'; ctx.lineWidth=1.5*scaleX;
+  ctx.beginPath(); ctx.moveTo(hx,hy-4*scaleY); ctx.lineTo(hx,hy-28*scaleY); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(hx,hy-28*scaleY); ctx.lineTo(hx+14*scaleX,hy-22*scaleY); ctx.lineTo(hx,hy-16*scaleY);
+  ctx.fillStyle='#e8573a'; ctx.fill();
 }
 
 function drawBall() {
-  if (state.phase === 'done') return;
-  const bx = ball.x*scaleX;
-  const by = ball.y*scaleY;
-  const r = BALL_RADIUS*scaleX;
-
-  // Ombre
-  ctx.beginPath();
-  ctx.ellipse(bx+2*scaleX, by+3*scaleY, r*0.9, r*0.5, 0, 0, Math.PI*2);
-  ctx.fillStyle = 'rgba(0,0,0,0.3)';
-  ctx.fill();
-
-  // Balle
-  const grd = ctx.createRadialGradient(bx-r*0.3, by-r*0.3, r*0.1, bx, by, r);
-  grd.addColorStop(0, '#ffffff');
-  grd.addColorStop(0.6, '#e8e8e8');
-  grd.addColorStop(1, '#cccccc');
-  ctx.beginPath();
-  ctx.arc(bx, by, r, 0, Math.PI*2);
-  ctx.fillStyle = grd;
-  ctx.fill();
-
-  // Spin indicator
-  if (Math.abs(ball.spin)>0.05) {
-    ctx.beginPath();
-    ctx.arc(bx, by, r*0.4, 0, Math.PI*2);
-    ctx.fillStyle = 'rgba(100,100,255,0.2)';
-    ctx.fill();
-  }
+  if (state.phase==='done') return;
+  const bx=ball.x*scaleX, by=ball.y*scaleY, r=BALL_RADIUS*scaleX;
+  ctx.beginPath(); ctx.ellipse(bx+2*scaleX,by+3*scaleY,r*0.9,r*0.5,0,0,Math.PI*2);
+  ctx.fillStyle='rgba(0,0,0,0.3)'; ctx.fill();
+  const g=ctx.createRadialGradient(bx-r*0.3,by-r*0.3,r*0.1,bx,by,r);
+  g.addColorStop(0,'#fff'); g.addColorStop(0.6,'#e8e8e8'); g.addColorStop(1,'#ccc');
+  ctx.beginPath(); ctx.arc(bx,by,r,0,Math.PI*2);
+  ctx.fillStyle=g; ctx.fill();
 }
 
-function drawAimLine(h) {
-  if (state.phase !== 'aim' || !isDragging) return;
-  const bx = ball.x*scaleX, by = ball.y*scaleY;
-  const angle = getAimAngle();
-  const power = getPower();
-
-  // Ligne pointillée de visée
-  const len = power * 180 * scaleX;
+function drawAimLine() {
+  if (state.phase!=='aim'||!isDragging) return;
+  const bx=ball.x*scaleX, by=ball.y*scaleY;
+  const angle=getAimAngle(), power=getPower();
   ctx.save();
-  ctx.setLineDash([6*scaleX, 5*scaleX]);
-  ctx.strokeStyle = `rgba(255,255,255,${0.3+power*0.5})`;
-  ctx.lineWidth = 2*scaleX;
-  ctx.beginPath();
-  ctx.moveTo(bx, by);
-  // Prévision de trajectoire
-  let px = ball.x, py = ball.y;
-  let pvx = Math.cos(angle)*power*MAX_POWER;
-  let pvy = Math.sin(angle)*power*MAX_POWER;
-  const steps = 30;
-  for (let i=0;i<steps;i++) {
-    pvx *= FRICTION;
-    pvy *= FRICTION;
-    px += pvx;
-    py += pvy;
-    ctx.lineTo(px*scaleX, py*scaleY);
-  }
-  ctx.stroke();
-  ctx.setLineDash([]);
-  ctx.restore();
-
-  // Power indicator arc around ball
-  ctx.beginPath();
-  ctx.arc(bx, by, (BALL_RADIUS+6+power*20)*scaleX, angle-0.4, angle+0.4);
-  ctx.strokeStyle = `rgba(240,192,64,${power*0.8})`;
-  ctx.lineWidth = 3*scaleX;
-  ctx.stroke();
-
-  // Power bar
-  document.getElementById('power-fill').style.width = (power*100)+'%';
+  ctx.setLineDash([6*scaleX,5*scaleX]);
+  ctx.strokeStyle=`rgba(255,255,255,${0.3+power*0.5})`; ctx.lineWidth=2*scaleX;
+  ctx.beginPath(); ctx.moveTo(bx,by);
+  let px=ball.x,py=ball.y,pvx=Math.cos(angle)*power*MAX_POWER,pvy=Math.sin(angle)*power*MAX_POWER;
+  for (let i=0;i<30;i++) { pvx*=FRICTION; pvy*=FRICTION; px+=pvx; py+=pvy; ctx.lineTo(px*scaleX,py*scaleY); }
+  ctx.stroke(); ctx.setLineDash([]); ctx.restore();
+  ctx.beginPath(); ctx.arc(bx,by,(BALL_RADIUS+6+power*20)*scaleX,angle-0.4,angle+0.4);
+  ctx.strokeStyle=`rgba(240,192,64,${power*0.8})`; ctx.lineWidth=3*scaleX; ctx.stroke();
+  document.getElementById('power-fill').style.width=(power*100)+'%';
 }
 
 function drawParticles() {
   for (const p of particles) {
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r*scaleX, 0, Math.PI*2);
-    ctx.fillStyle = p.color + Math.floor(p.life*255).toString(16).padStart(2,'0');
+    ctx.beginPath(); ctx.arc(p.x,p.y,p.r*scaleX,0,Math.PI*2);
+    ctx.fillStyle=p.color+Math.floor(p.life*255).toString(16).padStart(2,'0');
     ctx.fill();
   }
 }
 
-// ── Main loop ──
-let lastTime = 0;
+// ── Game loop ─────────────────────────────
+let lastTime=0;
 function gameLoop(ts) {
-  const dt = Math.min((ts - lastTime)/16, 3);
-  lastTime = ts;
-
-  if (document.getElementById('screen-game').style.display !== 'none') {
-    const h = HOLES[state.hole];
-    windmillAngle += windmillSpeed;
-
-    // Physics (multiple substeps)
-    if (state.phase === 'rolling') {
-      for (let i=0;i<3;i++) updatePhysics(dt/3);
-    }
-
-    // Particles
-    for (const p of particles) {
-      p.x += p.vx;
-      p.y += p.vy;
-      p.vy += 0.1;
-      p.life -= 0.03;
-    }
-    particles = particles.filter(p=>p.life>0);
-
-    // Draw
-    ctx.clearRect(0,0,W,H);
-    drawGrass(h);
-    if (h.sand) drawSand(h.sand);
-    if (h.water) drawWater(h.water, h.islands);
-    if (h.windmill) drawWindmill(h.windmill);
-    drawWalls(h.walls);
-    drawHoleTarget(h);
-    drawAimLine(h);
-    drawBall();
-    drawParticles();
-
-    if (!isDragging) {
-      document.getElementById('power-fill').style.width = '0%';
-    }
-  }
   requestAnimationFrame(gameLoop);
+  const dt=Math.min((ts-lastTime)/16,3); lastTime=ts;
+
+  if (document.getElementById('screen-game').style.display!=='flex'||!W) return;
+
+  const h=HOLES[state.hole];
+  windmillAngle+=windmillSpeed;
+
+  if (state.phase==='rolling') {
+    for (let i=0;i<3;i++) updatePhysics();
+  }
+
+  for (const p of particles) { p.x+=p.vx; p.y+=p.vy; p.vy+=0.1; p.life-=0.03; }
+  particles=particles.filter(p=>p.life>0);
+
+  ctx.clearRect(0,0,W,H);
+  drawGrass();
+  if (h.sand&&h.sand.length)  drawSand(h.sand);
+  if (h.water&&h.water.length) drawWater(h.water,h.islands);
+  if (h.windmill)              drawWindmill(h.windmill);
+  drawWalls(h.walls);
+  drawHoleTarget(h);
+  drawAimLine();
+  drawBall();
+  drawParticles();
+
+  if (!isDragging) document.getElementById('power-fill').style.width='0%';
 }
 
-// ── Start ──
+// ── Start game ────────────────────────────
 function startGame() {
   document.getElementById('screen-scorecard').classList.remove('show');
-  state = { hole:0, strokes:0, totalScore:0, scores:[], phase:'aim',
-    charging:false, chargeStart:0, aimAngle:0, power:0,
-    mouseX:0, mouseY:0, mouseDown:false, wind:{angle:0,speed:0} };
-  particles = [];
-  document.getElementById('screen-title').style.display = 'none';
-  document.getElementById('screen-game').style.display = 'flex';
-  resizeCanvas();
-  showHoleTransition(() => {
-    initHole(0);
+  state={hole:0,strokes:0,totalScore:0,scores:[],phase:'aim',wind:{angle:0,speed:0}};
+  particles=[];
+  HOLES=generateCourse(Math.random()*0xffffffff|0);
+  document.getElementById('screen-title').style.display='none';
+  document.getElementById('screen-game').style.display='flex';
+  // Wait one frame for the flex layout to be painted before measuring the canvas
+  requestAnimationFrame(()=>{
+    resizeCanvas();
+    showHoleTransition(()=>initHole(0));
   });
 }
 
 document.getElementById('btn-start').addEventListener('click', startGame);
-window.addEventListener('resize', () => { if (document.getElementById('screen-game').style.display!=='none') resizeCanvas(); });
+window.addEventListener('resize', ()=>{
+  if (document.getElementById('screen-game').style.display==='flex') resizeCanvas();
+});
 
 requestAnimationFrame(gameLoop);
 </script>
