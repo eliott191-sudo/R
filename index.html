@@ -255,7 +255,7 @@
         <div id="message-sub">Coup de maître !</div>
       </div>
       <div id="instructions">
-        <span>Clic + glisser pour viser</span>
+        <span>Clic + glisser en arrière pour viser (comme un lance-pierre)</span>
         <span>Relâcher pour tirer</span>
         <span>R = réinitialiser</span>
         <span>S = scorecard</span>
@@ -320,7 +320,7 @@ function resizeCanvas() {
 const FRICTION = 0.985, SPIN_DECAY = 0.92;
 const BALL_RADIUS = 7, HOLE_RADIUS = 14;
 const WALL_RESTITUTION = 0.62, MIN_SPEED = 0.12;
-const MAX_POWER = 18, WIND_EFFECT = 0.0015;
+const MAX_POWER = 18, WIND_EFFECT = 0.00012;
 
 // State
 let state = { hole:0, strokes:0, totalScore:0, scores:[], phase:'aim', wind:{angle:0,speed:0} };
@@ -555,7 +555,7 @@ canvas.addEventListener('touchend', e=>{
 },{passive:false});
 
 document.addEventListener('keydown', e=>{
-  if ((e.key==='r'||e.key==='R') && state.phase==='aim') resetBall();
+  if ((e.key==='r'||e.key==='R') && (state.phase==='aim'||state.phase==='rolling')) resetBall();
   if (e.key==='s'||e.key==='S') toggleScorecard();
 });
 
@@ -567,7 +567,9 @@ function resetBall() {
 }
 
 function getBallCanvas() { return {cx:ball.x*scaleX, cy:ball.y*scaleY}; }
-function getAimAngle() { const {cx,cy}=getBallCanvas(); return Math.atan2(aimY-cy,aimX-cx); }
+// Slingshot-style aiming: drag AWAY from where you want the ball to go (like pulling
+// back a putter/slingshot); the shot fires in the opposite direction of the drag.
+function getAimAngle() { const {cx,cy}=getBallCanvas(); return Math.atan2(cy-aimY,cx-aimX); }
 function getPower()    { const {cx,cy}=getBallCanvas(); return Math.min(Math.hypot(aimX-cx,aimY-cy)/120,1); }
 
 function shoot() {
@@ -609,8 +611,12 @@ function updatePhysics() {
   if (state.phase!=='rolling') return;
   const h=HOLES[state.hole];
 
-  ball.vx+=Math.cos(state.wind.angle)*state.wind.speed*WIND_EFFECT;
-  ball.vy+=Math.sin(state.wind.angle)*state.wind.speed*WIND_EFFECT;
+  // Wind only nudges a ball that's still rolling with real speed — applying it at
+  // near-rest speeds would keep re-energizing the ball forever and it would never stop.
+  if (Math.hypot(ball.vx,ball.vy) > MIN_SPEED*3) {
+    ball.vx+=Math.cos(state.wind.angle)*state.wind.speed*WIND_EFFECT;
+    ball.vy+=Math.sin(state.wind.angle)*state.wind.speed*WIND_EFFECT;
+  }
   ball.x+=ball.vx; ball.y+=ball.vy;
   ball.spin*=SPIN_DECAY;
 
@@ -854,6 +860,12 @@ function drawAimLine() {
   const bx=ball.x*scaleX, by=ball.y*scaleY;
   const angle=getAimAngle(), power=getPower();
   ctx.save();
+
+  // "Pull-back" band from the ball to the cursor, so it's clear you're drawing the
+  // shot back like a slingshot — the ball will fire the opposite way.
+  ctx.strokeStyle=`rgba(232,87,58,${0.4+power*0.4})`; ctx.lineWidth=3*scaleX;
+  ctx.beginPath(); ctx.moveTo(bx,by); ctx.lineTo(aimX,aimY); ctx.stroke();
+
   ctx.setLineDash([6*scaleX,5*scaleX]);
   ctx.strokeStyle=`rgba(255,255,255,${0.3+power*0.5})`; ctx.lineWidth=2*scaleX;
   ctx.beginPath(); ctx.moveTo(bx,by);
